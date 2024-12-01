@@ -10,14 +10,14 @@ pub fn part1() -> Result<i32, Box<dyn Error>> {
     let total_dist = zip(start_nums, end_nums)
         .map(|(x, y)| (y - x).abs())
         .reduce(|acc, e| acc + e);
-    return Ok(total_dist.unwrap());
+    return Ok(total_dist.expect("part 1 failed"));
 }
 
 pub fn part2() -> Result<usize, Box<dyn Error>> {
     let (start_nums, end_nums) = parse_nums()?;
     let mut similarity: usize = 0;
     for i in start_nums {
-        let score = end_nums.iter().filter(|x| **x == i).count();
+        let score = end_nums.iter().filter(|&&x| x == i).count();
         similarity += (i as usize) * score;
     }
     return Ok(similarity);
@@ -31,8 +31,8 @@ fn parse_nums() -> Result<(Vec<i32>, Vec<i32>), Box<dyn Error>> {
     for line in reader.lines() {
         let line = line?;
         let sizes: Vec<&str> = line.split("   ").collect();
-        start_nums.push(sizes.get(0).unwrap().parse::<i32>().unwrap());
-        end_nums.push(sizes.get(1).unwrap().parse::<i32>().unwrap());
+        start_nums.push(sizes.get(0).expect("index missing").parse::<i32>().unwrap());
+        end_nums.push(sizes.get(1).expect("index missing").parse::<i32>().unwrap());
     }
     Ok((start_nums, end_nums))
 }
