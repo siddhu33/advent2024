@@ -1,5 +1,4 @@
 use core::str;
-use std::cmp::min;
 use std::error::Error;
 use std::fs::read;
 use std::usize;
@@ -66,7 +65,6 @@ pub fn part2() -> Result<i32, Box<dyn Error>> {
             let mut complete = false;
             let mut valid = true;
             let mut start_char = find_idx.unwrap() + 4;
-            let mul_start_char = find_idx.unwrap();
             let mut inner: Vec<&str> = Vec::new();
             if do_idx < do_not_idx && do_idx < start_char {
                 include = true;
