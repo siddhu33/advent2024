@@ -5,6 +5,7 @@ mod day4;
 mod day5;
 mod day6;
 mod day7;
+mod day8;
 
 fn day1() {
     println!(
@@ -62,9 +63,17 @@ fn day7() {
     );
 }
 
+fn day8() {
+    println!(
+        "day8[part1: {}, part2: {}]",
+        day8::part1().expect("error when calling part 1"),
+        day8::part2().expect("error when calling part 2")
+    );
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().collect();
-    let mut day_num: u32 = 7;
+    let mut day_num: u32 = 8;
     if args.len() > 1 {
         day_num = args[1].parse::<u32>().expect("error parsing arg to int!");
     }
@@ -77,6 +86,7 @@ fn main() {
         5 => day5(),
         6 => day6(),
         7 => day7(),
+        8 => day8(),
         _ => println!("No day selected!"),
     }
 }
